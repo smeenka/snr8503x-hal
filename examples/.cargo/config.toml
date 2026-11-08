@@ -1,0 +1,13 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = "/data/tools/jtag/openocd-snr8503/src/openocd  -s /data/tools/jtag/openocd-snr8503/tcl -f interface/cmsis-dap.cfg -f target/snr8503x.cfg  -c program \"target.hex\" verify reset exit"
+
+
+[build]
+target = "thumbv6m-none-eabi"
+
+[target.thumbv6m-none-eabi]
+rustflags = [
+  "-C", "link-args=-Tlink.x -Map=build_f7.map"  # link.x is provided by cortex-m-rt
+]
+
+
